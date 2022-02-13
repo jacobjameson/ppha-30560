@@ -6,6 +6,11 @@ The piece should have a strong sense of hierarchy. Please do not repeat or copy 
 colors or annotations. Submit as a PDF.
 
 **Completed**
+**Ellas-story/chart-1**
+**Ellas-story/chart-2**
+**Ellas-story/chart-3**
+
+
 
 2. Make the health care area chart dance, like in this article. Do not worry about interactivity
 yet. I used a fancy algorithm to position the labels, but if you don’t want to do that, you
@@ -14,11 +19,14 @@ attention to the design and content of the headline, axes and source. Please dow
 data from the website itself.
 
 **Completed**
+**scripts/dancing-bar-chart.js**
+
 
 3. Replicate this football chart from Kevin Quealy. Do not worry about the button feature.
 The mouseover functionality is optional. Please download the data from the website
 itself.
 
 **Completed**
+**scripts/multiple-line-chart.js**
 
-[fodod](https://github.com/jacobjameson/ppha-30560/blob/main/Homework%203/index.html%20as%20pdf.pdf)
+You can view the pdf version of the html for Q2 and [here](https://github.com/jacobjameson/ppha-30560/blob/main/Homework%203/index.html%20as%20pdf.pdf).
