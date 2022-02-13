@@ -6,8 +6,11 @@ The piece should have a strong sense of hierarchy. Please do not repeat or copy 
 colors or annotations. Submit as a PDF.
 
 **Completed**
+
 **Ellas-story/chart-1**
+
 **Ellas-story/chart-2**
+
 **Ellas-story/chart-3**
 
 
@@ -19,6 +22,7 @@ attention to the design and content of the headline, axes and source. Please dow
 data from the website itself.
 
 **Completed**
+
 **scripts/dancing-bar-chart.js**
 
 
@@ -27,6 +31,8 @@ The mouseover functionality is optional. Please download the data from the websi
 itself.
 
 **Completed**
+
 **scripts/multiple-line-chart.js**
+
 
 You can view the pdf version of the html for Q2 and [here](https://github.com/jacobjameson/ppha-30560/blob/main/Homework%203/index.html%20as%20pdf.pdf).
