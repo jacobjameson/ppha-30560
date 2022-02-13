@@ -1,3 +1,6 @@
+let svgDancingBar = d3.select("body").select("#multiple-line-chart")
+        console.log({ d3 })
+
     let margin = { top: 30, right: 30, bottom: 30, left: 0 };
     let width = 750;
     let height = 550;
