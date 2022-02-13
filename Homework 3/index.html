@@ -6,18 +6,20 @@
         <title>Data Viz | Jacob Jameson</title>
         <meta charset="utf-8" />
     		<meta name="viewport" content="width=device-width, initial-scale=1">
-        <script src="https://d3js.org/d3.v6.min.js"></script>
 
     		<link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@1,100;1,400;1,700&family=Playfair+Display&family=Raleway:ital,wght@1,200&display=swap" rel="stylesheet">
     		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
         <link href="styles.css" rel="stylesheet"></style>
 
+        <script src="https://d3js.org/d3.v6.min.js"></script>
+        <script src="https://unpkg.com/topojson@3"></script>
+        <script src="https://rawgit.com/susielu/d3-annotation/master/d3-annotation.min.js"></script>
 
     </head>
 
     <body>
-      <h1 class=highlightgreen>
+      <h1>
         Jacob Jameson
       </h1>
 
@@ -74,18 +76,25 @@
           </h5>
 
           <p class="caption">
-            Tom Brady is the GOAT
+            Tom Brady has retired from football after a 22-year career of 
+            consistent success and unmatched achievement. But his stature as 
+            the N.F.L.’s greatest quarterback may be best understood by seeing 
+            his achievements stacked up against those of hundreds of others who 
+            played the same position.
+
+            The chart below does just that, comparing Brady with more than 300 
+            other N.F.L. quarterbacks in playoff victories. 
+            Players who were still active during the 2021 season are highlighted.
           </p>
 
-          <svg width="850px" height="500px" id="multiple-line-chart"></svg>
+          <svg width="850px" height="570" id="multiple-line-chart"></svg>
 
           <div class='spacer'></div>
 
           <p class="source">
-            Note: blah blaj
+            Source: Pro Football Reference
           </p>
       </div>
-      <br>
 
     </body>
         <!-- we're using d3 version 6 (the latest version) for all out work -->

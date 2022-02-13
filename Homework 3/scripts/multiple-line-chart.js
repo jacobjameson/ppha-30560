@@ -1,4 +1,4 @@
-let svgDancingBar = d3.select("body").select("#multiple-line-chart")
+let svgMultipleLine = d3.select("body").select("#multiple-line-chart")
         console.log({ d3 })
 
     let margin = { top: 30, right: 30, bottom: 30, left: 0 };
@@ -61,11 +61,11 @@ let svgDancingBar = d3.select("body").select("#multiple-line-chart")
         let svg = d3.select("body")
             .select("svg")
 
-        let yAxisTicks = svg.append("g")
+        let yAxisTicks = svgMultipleLine.append("g")
             .attr("class", "y axis")
             .call(yAxisSettings)
 
-        let xAxisTicks = svg.append("g")
+        let xAxisTicks = svgMultipleLine.append("g")
             .attr("class", "x axis")
             .call(xAxisSettings)
             .attr("transform", `translate(0, ${height - margin.bottom})`)
@@ -88,7 +88,7 @@ let svgDancingBar = d3.select("body").select("#multiple-line-chart")
             }),
             d => d.player_id)
 
-        let line_path = svg.append("g")
+        let line_path = svgMultipleLine.append("g")
             .selectAll(".line")
             .data(grouped_data)
             .join("path")
@@ -110,7 +110,7 @@ let svgDancingBar = d3.select("body").select("#multiple-line-chart")
                 }
             })
 
-        let pts = svg.selectAll("pts")
+        let pts = svgMultipleLine.selectAll("pts")
             .data(maxdata)
             .enter()
             .filter(function(d) { return d[1]["maxWins"] > 0 })
@@ -131,7 +131,7 @@ let svgDancingBar = d3.select("body").select("#multiple-line-chart")
                 }
             })
 
-         let labels = svg.selectAll("labels")
+         let labels = svgMultipleLine.selectAll("labels")
             .data(maxdata)
             .enter()
             .filter(function(d) { 
@@ -155,7 +155,7 @@ let svgDancingBar = d3.select("body").select("#multiple-line-chart")
             .attr("letter-spacing", 0.4)
 
         // bottom line
-        let baseline = svg.append("line")
+        let baseline = svgMultipleLine.append("line")
             .attr("x1", margin.left)
             .attr("x2", width - margin.left)
             .attr("y1", y(0))
