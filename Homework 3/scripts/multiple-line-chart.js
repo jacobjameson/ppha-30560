@@ -18,7 +18,7 @@
         });
     };
     
-    d3.csv("final_data.csv").then(function (data){
+    d3.csv("football-data.csv").then(function (data){
         data.forEach(function (row) {
             row.player_id = row.player_id
             row.year = +row.year
