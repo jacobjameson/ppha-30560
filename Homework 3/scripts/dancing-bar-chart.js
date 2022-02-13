@@ -1,4 +1,4 @@
-    let svgDancingBar = d3.select("body").select("#dancing-bar-chart")
+let svgDancingBar = d3.select("body").select("#dancing-bar-chart")
         console.log({ d3 })
     
         let width = 800;
@@ -7,7 +7,7 @@
         let svg = d3.select("body")
             .select("svg")
     
-        d3.csv("healthcare-disposable-inc.csv").then(function (data) {
+        d3.csv("data/healthcare-disposable-inc.csv").then(function (data) {
           console.log("loaded")
     console.log(data)
 
