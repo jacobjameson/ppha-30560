@@ -21,4 +21,4 @@ itself.
 
 **Completed**
 
-[embed] https://github.com/jacobjameson/ppha-30560/blob/main/Homework%203/index.html%20as%20pdf.pdf [/embed] 
+![fodod](https://github.com/jacobjameson/ppha-30560/blob/main/Homework%203/index.html%20as%20pdf.pdf)
