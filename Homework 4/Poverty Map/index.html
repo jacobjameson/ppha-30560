@@ -38,7 +38,7 @@
 <body>
     <div class="chart-container">
         <h1 class="headline">
-            Children in Poveryt
+            Children in Poverty
         </h1>
 
         <svg width="1050px" height="500px"></svg>
@@ -69,11 +69,11 @@
         let states = topojson.feature(data, data.objects.cb_2018_us_state_20m)
 
         console.log({counties})
+        console.log({states})
 
         let projection = d3.geoIdentity()
             .fitSize([width, height], states)
             .reflectY(true)
-
         let path = d3.geoPath(projection)
 
         svg.append("g")
