@@ -55,63 +55,102 @@
 <script src="https://unpkg.com/topojson@3"></script>
 
 <script>
-    console.log({d3})
-    console.log({topojson})
-    let width = 1050;
-    let height = 500;
+    Promise.all([d3.json('topo.json')])
+        .then(ready)
+        .catch((err) => { console.log(err) });
 
-    let svg = d3.select("body").select("svg")
+    function ready(res) {
 
-    d3.json("mapshaper-output/topojson.json").then(function (data) {
-        console.log({data})
+        let raw = res[0]
 
-        let counties = topojson.feature(data, data.objects.county)
-        let states = topojson.feature(data, data.objects.cb_2018_us_state_20m)
+        let county = topojson.feature(raw, raw.objects.county);
+        let state = topojson.feature(raw, raw.objects.state);
 
-        console.log({counties})
-        console.log({states})
+       // console.log({county})
 
-        let projection = d3.geoIdentity()
-            .fitSize([width, height], states)
+        let width = 1050;
+        let height = 700;
+        
+        let margin = { top: -10, right: 10, bottom: 10, left: 0 };
+
+        let svg = d3.select("body").select("svg")
+
+        let myProjection = d3.geoIdentity()
+            .fitSize([width, height], county)
             .reflectY(true)
-        let path = d3.geoPath(projection)
+
+        let path = d3.geoPath()
+            .projection(myProjection)
 
         svg.append("g")
-            .attr("class", "states")
             .selectAll("path")
-            .data(states.features)
+            .data(state.features)
             .join("path")
             .attr("d", path)
-            .attr("fill", "#ecedee")
-            .attr("stroke", "#000")
+            .style("fill", "#e5e5e5")
+            .style("stroke", "black")
+            .style("pointer-events", "none")
 
-        svg.append("g")
-            .attr("class", "counties")
-            .selectAll("circle")
-            .data(counties.features.filter(d => d.geometry != null))
+            // Children in U.S. living in Poverty in 2018
+
+        // svg.append('text').text('Children in U.S. living in Poverty in 2018')//disposable income, which is defined as market income plus cash')
+        //     .attr('x', 350)
+        //     .attr('y', 0)
+        //     .attr('fill', '#333')
+        //     .attr('font-size', '20px')
+        //     .attr('font-family', "sans-serif")
+        //     .attr('font-weight', 200)
+
+        svg.append('text').text('Source: U.S. Census')//disposable income, which is defined as market income plus cash')
+            .attr('x', -10)
+            .attr('y', height)
+            .attr('fill', '#999999')
+            .attr('font-size', '12px')
+            .attr('font-family', "sans-serif")
+            .attr('font-weight', 200)
+
+        let states = svg
+            .append("path")
+            .attr("d", path)
+            .style("fill", "none")
+            .style("stroke", "black")
+            .style("stroke-width", 1)
+            .style("pointer-events", "none")
+
+        let countyCircles = svg.append("g")
+            .selectAll(".circles")
+            .data(county.features.filter(d => d.geometry != null))
             .join("circle")
-            .attr("fill", "#f2a83b")
-            .attr("transform", d => `translate(${projection([d.geometry.coordinates[0], d.geometry.coordinates[1]])})`)
+            .attr("class", d => { return "circles p-" + d.properties.Geo_NAME}) //unique
             .attr("r", d => Math.sqrt(d.properties.pop_18_in_poverty / 300))
-            
+            .attr("cx", d => { return path.centroid(d)[0] }) //coordinates
+            .attr("cy", d => { return path.centroid(d)[1] })
+            .style("fill", "orange")
 
-        let county_circles = d3.selectAll(".counties circle")
         let popup = d3.select(".pop-up")
-        let comma_format = d3.format(",")
+        let formatter = d3.format(",") //format variable
 
-        county_circles.on("mouseover", (event, d) => {
+        countyCircles.on("mouseover", (event, d) => {
             popup
-                .style("opacity", 1)
+                .style("border", "1px solid black")
+                .style("width", "200px")
+                .style("background", "white")
+                .style("padding", "10px")
                 .style("left", (event.x + 10) + "px")
-                .style("top", (event.y - 15) + "px")
-                .html("<b>" + d.properties.Geo_QName + "</b><br />" + comma_format(d.properties.pop_18_in_poverty) + " children in poverty")
+                .style("top", (event.y - 15) + "px") //reposition
+                .style("opacity", .8)
+                .html("In " +
+                      "<b>" + d.properties.Geo_QName + ", " + 
+                      formatter(d.properties.pop_18_in_poverty) + 
+                      "</b>" + " children live in poverty.")
         })
 
-        county_circles.on("mouseout", (event, d) => {
+        countyCircles.on("mouseout", (event, d) => {
             popup
                 .style("opacity", 0)
+
         })
 
-    })
+}
 
 </script>
