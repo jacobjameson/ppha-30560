@@ -55,16 +55,21 @@
 <script src="https://unpkg.com/topojson@3"></script>
 
 <script>
-    Promise.all([d3.json('topo.json')])
-        .then(ready)
-        .catch((err) => { console.log(err) });
+    console.log({d3})
+    console.log({topojson})
+    let width = 1050;
+    let height = 500;
 
-    function ready(res) {
+    let svg = d3.select("body").select("svg")
 
-        let raw = res[0]
+    d3.json("mapshaper-output/topojson.json").then(function (data) {
+        console.log({data})
 
-        let county = topojson.feature(raw, raw.objects.county);
-        let state = topojson.feature(raw, raw.objects.state);
+        let counties = topojson.feature(data, data.objects.county)
+        let states = topojson.feature(data, data.objects.cb_2018_us_state_20m)
+
+        console.log({counties})
+        console.log({states})
 
        // console.log({county})
 
