@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <style>
+        .chart-container {
+            max-width: 500px;
+            margin: 0 auto;
+            /* auto centers the div */
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+
+        .source {
+            margin: 2em auto;
+            color: #999;
+        }
+
+        svg {
+            overflow: visible;
+        }
+
+
+        .filler {
+            height: 10rem;
+            text-align: center;
+        }
+
+        .filler h2 {
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-size: 54px;
+        }
+
+
+        .filler p {
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-size: 24px;
+            text-align: left;
+            margin: 20px auto;
+            line-height: 1.2;
+            max-width: 600px
+            
+        }
+
+        #scrolly-overlay .scrolly {
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-size: 24px;
+            max-width: 60rem;
+            margin: 3rem auto;
+            padding: 1rem;
+            position: relative;
+
+        }
+
+        #scrolly-overlay .scrolly article {
+            padding: 0;
+            max-width: 30rem;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        #scrolly-overlay .scrolly article .step {
+            min-height: 1px;
+            margin-bottom: 1rem;
+        }
+
+        #scrolly-overlay .scrolly article .step:last-of-type {
+            margin-bottom: 0;
+        }
+
+        #scrolly-overlay .scrolly article .step.is-active p {
+            background-color: #008080;
+        }
+
+        #scrolly-overlay .scrolly article .step p {
+            margin: 0;
+            padding: 1rem;
+            text-align: center;
+            font-weight: 400;
+            transition: background-color 250ms ease-in-out;
+            color: #f4f4f4;
+        }
+
+        #scrolly-overlay .scrolly figure.sticky {
+            /* this is the key style for the chart */
+            position: sticky;
+            width: 100%;
+            height: 50vh;
+            margin: 0;
+            top: 25vh;
+            left: 0;
+        }
+
+        #scrolly-overlay .scrolly figure.sticky .bar-outer {
+            position: absolute;
+            top: 50%;
+            left: 5%;
+            transform: translateY(-50%);
+            width: 90%;
+            height: 4rem;
+            background-color: #fff;
+        }
+
+        #scrolly-overlay .scrolly figure.sticky .bar-inner {
+            width: 10%;
+            height: 100%;
+            transition: width 1s ease-in-out;
+            background-color: #daa520;
+        }
+
+        .spacer {
+            height: 1500px;
+        }
+
+    </style>
+      <title>Data Viz | Jacob Jameson</title>
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link href="styles.css" rel="stylesheet"></style>
+</head>
+
+
+
+    <body>
+      <h1>
+        Jacob Jameson
+      </h1>
+
+      <div id="intro">
+        <h2>
+          Homework #4: Question 1
+       </h2>
+      </div>
+
+<body>
+    <section class='filler'>
+
+        <h2>Percentage of Chicago Population Fully Vaccinated: December 2020 to Present</h2>
+
+    </section>
+
+    <section id='scrolly-overlay'>
+
+        <div class='scrolly'>
+
+            <!--  sticky graphic   -->
+            <figure class='sticky'>
+                <!-- put your chart stuff here -->
+                <div class="chart-container">
+                    <h2 class="headline">
+                        Percent of Chicagoans Fully Vaccinated: <span class='highlight'>December 20, 2020</span>
+                    </h2>
+            
+                    <svg width="1050px" height="575px">
+                    </svg>
+                <p class="source">Source: Chicago Data Portal</p>
+                <!-- <div class='bar-outer'>
+                    <div class='bar-inner'></div>
+                </div> -->
+            </figure>
+
+            <!--  step text   -->
+            <article>
+                <!-- <div class='step' data-width='10%' data-index='0'>
+                    <p>Bar is 10%</p>
+                </div>
+                <div class='step' data-width='90%' data-index='1'>
+                    <p>Bar is 90%</p>
+                </div>
+                <div class='step' data-width='50%' data-index='2'>
+                    <p>Bar is 50%</p>
+                </div> -->
+            </article>
+
+        </div>
+
+    </section>
+
+    <section class='filler'> 
+        <div class="spacer"></div>
+        <p> </p>
+        <p>
+            As you can see that 
+        </p>
+        <p>
+        </p>
+        </br>
+        </br>
+    </section>
+</body>
+
+<!-- add your script blocks at the end -->
+<script src="https://d3js.org/d3.v6.min.js"></script>
+
+<script src="https://unpkg.com/enter-view@1.0.0/enter-view.min.js"></script>
+<!-- https://github.com/russellgoldenberg/enter-view -->
+
+
+<script>
+    
+</script>
+
+
+<script>
+    console.log(d3)
+    let width = 1000;
+    let height = 300;
+    let margin = { top: 30, right: 10, bottom: 10, left: 30 };
+
+    d3.csv("Data/chicago_vax.csv").then(function (data) {
+        let svg = d3.select("svg")
+        let scroll_steps = d3.select("article")
+
+        data = data.filter( row => row["Region"] == "Chicago")[0]
+
+        data = Object.keys(data).map(date => ({ date, cases: data[date] }))
+            .filter( row => !["Region"].includes(row.date) )
+
+        data.forEach(function(row) {
+            [month, day, year] = row.date.split("/")
+            month = +month
+            month = (month < 10 ? "0" + month : month)
+            day = +day
+            day = (day < 10 ? "0" + day : day)
+            row.numericDate = +("20" + year + month + day)
+            row.dateString = "20" + year + "-" + month + "-" + day + "T00:00"
+            row.date = new Date( row.dateString )
+            row.prettyDate = row.date.toLocaleDateString("en-US", {month: "long", day: "numeric", year: "numeric"})
+            row.cases = +row.cases
+            row.region = "Chicago"
+
+            scroll_steps.append("div")
+                .attr("class", "step")
+                .attr("data-numeric-date", row.numericDate)
+                .attr("data-pretty-date", row.prettyDate)
+        })
+
+        console.log(data)
+
+        let x = d3.scaleTime()
+            .domain(d3.extent(data.map( d => d.date )))
+            .range([margin.left, width - margin.right])
+
+        let y = d3.scaleLinear()
+            .domain(d3.extent(data.map( d => d.cases )))
+            .range([height - margin.bottom, margin.top])
+
+        let line = d3.line()
+            .x( d => x(d.date) )
+            .y( d => y(d.cases) )
+
+        let yAxisSettings = d3.axisLeft(y)
+            .ticks(5)
+            .tickSize(-width)
+            .tickPadding(10)
+
+        let xAxisSettings = d3.axisBottom(x)
+            .ticks(10)
+            .tickSize(10)
+            .tickPadding(10)
+
+        let xAxisTicks = svg.append("g")
+            .attr("class", "x axis")
+            .call(xAxisSettings)
+            .attr("transform", `translate(0,${height - margin.bottom})`)
+            .style("color", "#999999")
+        
+        let yAxisTicks = svg.append("g")
+            .attr("class", "y axis")
+            .call(yAxisSettings)
+            .attr("transform", `translate(${margin.left},0)`)
+            .style("color", "#CCCCCC")
+
+        let yAxisTickLabels = svg.selectAll(".y.axis .tick text")
+            .attr("dy", -7)
+            .attr("dx", -5)
+            .attr("x", width)
+            .style("text-anchor", "end")
+            .style("color", "#666666")
+        
+        svg.selectAll(".axis .domain")
+            .style("display", "none")
+
+        let line_path = svg.append("path")
+            .data([data.filter(function(d) { return d.cases == 1 })])
+            .attr("class", "case_count_line")
+            .attr("d", line)
+            .style("fill", "none")
+            .style("stroke-width", "3px")
+            .style("stroke", "black")
+
+        let case_count = svg.append("text")
+            .datum([data[1]])
+            .attr("class", "case_count_text")
+            .text(d => d[0].cases)
+            .attr("x", d => x(d[0].date))
+            .attr("y", d => y(d[0].cases))
+            .attr("dx", "5")
+            .attr("dy", "-10")
+            .attr("style", "text-shadow: 1px 1px 2px white")
+
+        let formatComma = d3.format(",")
+
+        function update(max_date) {
+            var filtered_data = data.filter(function(d) { 
+                return (d.numericDate <= max_date)
+            })
+
+            d3.selectAll(".case_count_line")
+                .data([filtered_data])
+                .attr("d", line)
+            
+            d3.selectAll(".case_count_text")
+                .data([filtered_data[filtered_data.length - 1]])
+                .text(d => formatComma(d.cases))
+                .attr("x", d => x(d.date))
+                .attr("y", d => y(d.cases))
+        }
+
+        const container = d3.select('#scrolly-overlay');
+        
+        const stepSel = container.selectAll('.step');
+
+        function init() {
+
+            enterView({ //our main view function
+                selector: stepSel.nodes(),
+                offset: 0.5, //when the slide is 50% away then trigger your chart
+                enter: el => { //what's supposed to happen when the slide enters?
+                    d3.select(".highlight").html(d3.select(el).attr('data-pretty-date'))
+                    update(+d3.select(el).attr('data-numeric-date'))
+                },
+                exit: el => { //what's supposed to happen when the slide exits?
+                    d3.select(".highlight").html(d3.select(el).attr('data-pretty-date'))
+                    update(+d3.select(el).attr('data-numeric-date'))
+                }
+            });
+
+        }
+
+        init();
+        
+    })
+    
+
+</script>
