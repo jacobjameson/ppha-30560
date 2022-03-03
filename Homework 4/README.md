@@ -1,8 +1,3 @@
----
-output:
-  pdf_document: default
-  html_document: default
----
 ## Homework 4
 
 ### Scrolly-Telling Example
