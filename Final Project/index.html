@@ -68,7 +68,13 @@
     fill: #4F4F4F;
     font-size: 15pt;
     }
-
+    table, th, td {
+  border: 1px solid white;
+  border-collapse: collapse;
+}
+th, td {
+  background-color: #96D4D4;
+}
     </style>
       <title>Data Viz | Jacob Jameson</title>
       <meta charset="utf-8" />
@@ -78,7 +84,7 @@
 
   <body>
     <h1>
-      Analyzing Social Network Data From Add Health 
+      Measuring Centrality in Social Networks
     </h1>
 
     <div id="intro">
@@ -87,12 +93,53 @@
       </h2>
 
     <h3>
-      The National Longitudinal Study of Adolescent to Adult Health (Add Health) 
-      is a longitudinal study of a nationally representative sample of over 
-      20,000 adolescents who were in grades 7-12 during the 1994-95 school year, 
-      and have been followed for five waves to date, most recently in 2016-18.
+
+      <strong> According to Freeman in 1979: "There is certainly 
+      no unanimity on exactly what centrality is or on its conceptual foundations, and 
+      there is little agreement on the proper procedure for its measurement."</strong>
       <br>
       <br>
+      Social network analysis can be used to measure the importance of a 
+      person as a function of the social structure of a community or organization. 
+      In social networks, centrality measures this kind of structural importance of the 
+      node of a person. This project uses data visualization as a tool to explain how different
+      measures of centrality may be used to analyze different questions in network analysis. 
+      In this project we will explore the following centrality measures:
+      <br>
+      <ul>
+        <li>Degree Centrality</li>
+        <li>Eigenvector Centrality</li>
+        <li>Katz Centrality</li>
+        <li>PageRank</li>
+        <li>HITS Hubs and Authorities</li>
+        <li>Closeness Centrality</li>
+        <li>Betweenness Centrality</li>
+      </ul>
+      <br>
+      For these examples we will look at centrality for both directed and undirected graphs.
+      The main difference between directed and undirected graph being that a directed graph 
+      contains an ordered pair of vertices whereas an undirected graph contains an unordered pair of vertices.
+      <br>
+      <br>
+      An example of a <strong>directed graph</strong> would be one in which people nominate their top 5 friends.
+      In this graph, nodes (people) would connect to others nodes through directed edges (nominations). It is 
+      possible for Jacob to nominate Kashif without Kashif nominating him back. You can imagine why centrality 
+      in a friendship network might take into account the direction of these nominations. If I list 100 
+      people as my friends and none of them list me back, do we think I am a popular person? 
+      <br>
+      <br>
+      An <strong>undirected graph</strong> is one in which connectedness of two nodes does not have a direction 
+      associated with it. This network may be one used in contagious diseases modeling, where centrality may be defined 
+      as the number of nodes that interact with another node and the direction is irrelevant.
+      <br>
+      <br>
+    </h3>
+    <h2>
+       <strong>Degree Centrality</strong>
+    </h2>
+      <img src="graphs/g degree centrality.svg" width="800" height=auto class='center'/>
+      <br>
+
     </h3>
 
 
