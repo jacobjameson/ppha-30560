@@ -1,73 +1,73 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
 <style>
-        .chart-container {
-            max-width: 1050px;
-            margin: 0 auto;
-            margin-top: 10px;
-            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-        }
+    .chart-container {
+        max-width: 1050px;
+        margin: 0 auto;
+        margin-top: 10px;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    }
 
-        svg {
-            overflow: visible;
-        }
+    svg {
+        overflow: visible;
+    }
 
-        h1 {
-            margin-top: 10px;
-            margin-left: 150px;
-            font-family: 'Helvetica Neue';
-            font-weight: 400;
-            font-size: 24px;
-        }
+    h1 {
+        margin-top: 10px;
+        margin-left: 150px;
+        font-family: 'Helvetica Neue';
+        font-weight: 400;
+        font-size: 24px;
+    }
 
-        h2 {
-            margin-bottom: 30px;
-            margin-left: 150px;
-            font-family: 'Helvetica Neue';
-            font-weight: 400;
-            font-size: 15px;
-        }
+    h2 {
+        margin-bottom: 30px;
+        margin-left: 150px;
+        font-family: 'Helvetica Neue';
+        font-weight: 400;
+        font-size: 15px;
+    }
 
-        .pop-up {
-            position: absolute; 
-            border: 1px solid black;
-            border-radius: 1px;
-            line-height: 1.2;
-            width: 200px;
-            pointer-events: none;
-            background-color: white;
-            padding: 10px;
-            font-family: 'Helvetica Neue';
-            font-size: 12px;
-        }
+    .pop-up {
+        position: absolute; 
+        border: 1px solid black;
+        border-radius: 1px;
+        line-height: 1.2;
+        width: 200px;
+        pointer-events: none;
+        background-color: white;
+        padding: 10px;
+        font-family: 'Helvetica Neue';
+        font-size: 12px;
+    }
 
-        .source {
-            max-width: 600px;
-            margin-left: 150px;
-            margin-top: 30px;
-            font-family: 'Helvetica Neue';
-            font-size: 12px;
-            color: #999999;
-            line-height: 1.5;
+    .source {
+        max-width: 600px;
+        margin-left: 150px;
+        margin-top: 30px;
+        font-family: 'Helvetica Neue';
+        font-size: 12px;
+        color: #999999;
+        line-height: 1.5;
 
-        }
-        .legendTitle {
-	font-size: 15px;
-	fill: #4F4F4F;
-	font-weight: 12;
-}
+    }
+    .legendTitle {
+    font-size: 15px;
+    fill: #4F4F4F;
+    font-weight: 12;
+    }
 
-.axis path, .axis line {
-	fill: none;
-	stroke: none; /*black;*/
-	shape-rendering: crispEdges;
-}
+    .axis path, .axis line {
+    fill: none;
+    stroke: none; /*black;*/
+    shape-rendering: crispEdges;
+    }
 
-.axis text {
-	font-family: Consolas, 'Times New Roman', Times, serif;
- 	fill: #000;
-	font-size: 15pt;
-}
+    .axis text {
+    font-family: Consolas, 'Times New Roman', Times, serif;
+    fill: #4F4F4F;
+    font-size: 15pt;
+    }
 
     </style>
       <title>Data Viz | Jacob Jameson</title>
@@ -156,7 +156,7 @@ svgLegend.append("text")
 svgLegend.append("rect")
   .attr("x", 10)
   .attr("y", 30)
-  .attr("width", 1000)
+  .attr("width", 345)
   .attr("height", 35)
   .style("fill", "url(#linear-gradient)");
 
