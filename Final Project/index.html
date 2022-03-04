@@ -1,17 +1,80 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
 <style>
+        .chart-container {
+            max-width: 1050px;
+            margin: 0 auto;
+            margin-top: 10px;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
 
-</style> </style>
+        svg {
+            overflow: visible;
+        }
+
+        h1 {
+            margin-top: 10px;
+            margin-left: 150px;
+            font-family: 'Helvetica Neue';
+            font-weight: 400;
+            font-size: 24px;
+        }
+
+        h2 {
+            margin-bottom: 30px;
+            margin-left: 150px;
+            font-family: 'Helvetica Neue';
+            font-weight: 400;
+            font-size: 15px;
+        }
+
+        .pop-up {
+            position: absolute; 
+            border: 1px solid black;
+            border-radius: 1px;
+            line-height: 1.2;
+            width: 200px;
+            pointer-events: none;
+            background-color: white;
+            padding: 10px;
+            font-family: 'Helvetica Neue';
+            font-size: 12px;
+        }
+
+        .source {
+            max-width: 600px;
+            margin-left: 150px;
+            margin-top: 30px;
+            font-family: 'Helvetica Neue';
+            font-size: 12px;
+            color: #999999;
+            line-height: 1.5;
+
+        }
+        .legendTitle {
+	font-size: 15px;
+	fill: #4F4F4F;
+	font-weight: 12;
+}
+
+.axis path, .axis line {
+	fill: none;
+	stroke: none; /*black;*/
+	shape-rendering: crispEdges;
+}
+
+.axis text {
+	font-family: Consolas, 'Times New Roman', Times, serif;
+ 	fill: #000;
+	font-size: 15pt;
+}
+
+    </style>
       <title>Data Viz | Jacob Jameson</title>
       <meta charset="utf-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1">
-
-      <link rel="preconnect" href="https://fonts.gstatic.com">
-      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" 
-      rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
       <link href="styles.css" rel="stylesheet"></style>
-      <script src="https://d3js.org/d3.v6.js"></script>
+      <script src="https://d3js.org/d3.v6.min.js"></script>
 
   <body>
     <h1>
@@ -23,98 +86,95 @@
         Author: Jacob Jameson
       </h2>
 
-</body>
-
-<body>
-
-  <body>
     <h3>
       The National Longitudinal Study of Adolescent to Adult Health (Add Health) 
       is a longitudinal study of a nationally representative sample of over 
       20,000 adolescents who were in grades 7-12 during the 1994-95 school year, 
       and have been followed for five waves to date, most recently in 2016-18.
       <br>
-
-      <div id="my_dataviz"></div>
-
       <br>
-      Of the interesting data collected during the first wave of the survey,
-      data in the form of friendship nominations collected at Wave I serve as 
-      the friendship measure. Adolescents were asked to identify their five 
-      closest female and five closest male friends from a provided roster. 
-      ID codes were used to link adolescents to nominated friends, creating 
-      friendship networks as well as allowing for behavioral data to be collected 
-      directly from adolescents. Nominations for out-of-school friends were not 
-      considered, as data was not collected on these individuals. In this way, 
-      friendships are restricted to those occurring within the school in which the 
-      adolescent is enrolled, allowing for the formation of two complete networks 
-      (i.e., School A and School B) of adolescents, a requirement of our analyses.
     </h3>
 
-    <div id="my_dataviz2"></div>
 
 </body>
 
+<script src="https://d3js.org/d3.v6.min.js"></script>
 
 <script>
+    let margin = { top: 0, right: 0, bottom: 50, left: 30 };
+    let width = 700;
+    let height = 500;
 
-// set the dimensions and margins of the graph
-const margin = {top: 10, right: 30, bottom: 30, left: 40},
-  width = 400 - margin.left - margin.right,
-  height = 400 - margin.top - margin.bottom;
+var colorScale = d3.scaleLinear()
+  	.range(['#440154FF', '#481567FF', '#482677FF', '#453781FF', '#404788FF',
+'#39568CFF', '#33638DFF', '#2D708EFF', '#287D8EFF', '#238A8DFF',
+'#1F968BFF', '#20A387FF', '#29AF7FFF', '#3CBB75FF', '#55C667FF',
+'#73D055FF', '#95D840FF', '#B8DE29FF', '#DCE319FF', '#FDE725FF']);
 
-var color = d3.scaleOrdinal(d3.schemeReds[6]);
-// append the svg object to the body of the page
-const svg = d3.select("#my_dataviz")
-.append("svg")
-  .attr("width", width + margin.left + margin.right)
-  .attr("height", height + margin.top + margin.bottom)
-.append("g")
-  .attr("transform",
-        `translate(${margin.left}, ${margin.top})`);
 
-d3.json("simple.json").then( function( data) {
 
-  // Initialize the links
-  const link = svg
-    .selectAll("line")
-    .data(data.links)
-    .join("line")
-      .style("stroke", "#aaa")
+  // append a defs (for definition) element to your SVG
+var svgLegend = d3.select('body').append('svg')
+    .attr("width",600);
+var defs = svgLegend.append('defs');
 
-  // Initialize the nodes
-  const node = svg
-    .selectAll("circle")
-    .data(data.nodes)
-    .join("circle")
-      .attr("r", 10)
-      .attr("fill", function(d) { return color(d.color); })
+	// append a linearGradient element to the defs and give it a unique id
+var linearGradient = defs.append('linearGradient')
+		.attr('id', 'linear-gradient');
 
-  // Let's list the force we wanna apply on the network
-  const simulation = d3.forceSimulation(data.nodes)                 // Force algorithm is applied to data.nodes
-      .force("link", d3.forceLink()                               // This force provides links between nodes
-            .id(function(d) { return d.id; })                     // This provide  the id of a node
-            .links(data.links)                                    // and this the list of links
-      )
-      .force("charge", d3.forceManyBody().strength(-400))         // This adds repulsion between nodes. Play with the -400 for the repulsion strength
-      .force("center", d3.forceCenter(width / 2, height / 2))     // This force attracts nodes to the center of the svg area
-      .on("end", ticked);
+// horizontal gradient
+linearGradient
+  .attr("x1", "0%")
+  .attr("y1", "0%")
+  .attr("x2", "100%")
+  .attr("y2", "0%");
 
-  // This function is run at each iteration of the force algorithm, updating the nodes position.
-  function ticked() {
-    link
-        .attr("x1", function(d) { return d.source.x; })
-        .attr("y1", function(d) { return d.source.y; })
-        .attr("x2", function(d) { return d.target.x; })
-        .attr("y2", function(d) { return d.target.y; });
+// append multiple color stops by using D3's data/enter step
+linearGradient.selectAll("stop")
+  .data([
+    {offset: "0%", color: "#440154FF"},
+    {offset: "50%", color: "#29AF7FFF"},
+    {offset: "100%", color: "#FDE725FF"}
+  ])
+  .enter().append("stop")
+  .attr("offset", function(d) { 
+    return d.offset; 
+  })
+  .attr("stop-color", function(d) { 
+    return d.color; 
+  });
 
-    node
-         .attr("cx", function (d) { return d.x+6; })
-         .attr("cy", function(d) { return d.y-6; });
-  }
+// append title
+svgLegend.append("text")
+  .attr("class", "legendTitle")
+  .attr("x", 10)
+  .attr("y", 20)
+  .style("text-anchor", "left")
+  .text("Centrality Score (Low to High Centrality)");
 
-});
+// draw the rectangle and fill with gradient
+svgLegend.append("rect")
+  .attr("x", 10)
+  .attr("y", 30)
+  .attr("width", 1000)
+  .attr("height", 35)
+  .style("fill", "url(#linear-gradient)");
+
+//create tick marks
+var xLeg = d3.scaleLinear()
+  .domain([0, 100])
+  .range([10, 400]);
+
+
+svgLegend
+  .attr("class", "axis")
+  .append("g")
+  .attr("transform", "translate(0, 40)")
+  .call(axisLeg);
+
 </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.10.0/d3.min.js"></script>
+
 
 
 </html>
