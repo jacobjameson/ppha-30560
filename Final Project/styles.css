@@ -41,7 +41,6 @@ h2 {
 
 h3 {
 	font-weight: 400;
-	font-style: italic;
 }
 
 h5 {
@@ -154,6 +153,16 @@ p {
   font-weight: 400;
   margin-right: 250px;
 }
+
+.node {
+	stroke: #fff;
+	stroke-width: 1px;
+  }
+  
+  .link {
+	stroke: #999;
+	stroke-opacity: 1;
+  }
 
 .pop-up {
   position: absolute;
