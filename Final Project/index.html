@@ -53,7 +53,6 @@
     }
     .legendTitle {
     font-size: 15px;
-    fill: #4F4F4F;
     font-weight: 12;
     }
 
@@ -65,9 +64,10 @@
 
     .axis text {
     font-family: Consolas, 'Times New Roman', Times, serif;
-    fill: #4F4F4F;
     font-size: 15pt;
+
     }
+
     table, th, td {
   border: 1px solid white;
   border-collapse: collapse;
@@ -81,8 +81,9 @@ th, td {
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <link href="styles.css" rel="stylesheet"></style>
       <script src="https://d3js.org/d3.v6.min.js"></script>
-
+      <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=default'></script>
   <body>
+
     <h1>
       Measuring Centrality in Social Networks
     </h1>
@@ -134,92 +135,79 @@ th, td {
       <br>
       <br>
     </h3>
+  </div>
+
+    <div class="chart-container">
+    <svg width="850px" height="20px" id="scale"></svg>
+    <script src="scale.js"></script>
+
+  </div>
+
     <h2>
        <strong>Degree Centrality</strong>
     </h2>
-      <img src="graphs/g degree centrality.svg" width="800" height=auto class='center'/>
-      <br>
-
+    <h3>
+    <img src="graphs/g degree centrality.svg" width="800" height=auto class='center'/>
+    <br>
+    Degree of a node is basically number of edges that it has. The basic intuition is that, 
+    nodes with more connections are more influential and important in a network. In other words, 
+    the person with higher friend count in a social network, the more cited paper (in-degree) in a 
+    scientific citation network is the one that is more central according to this metric.
+    <br>
+    <br>
+    For directed graphs, in-degree, number of incoming points, is considered as importance factor for nodes.
+    <br>
+    <br>
+    <img src="graphs/Dig degree centrality.svg" width="800" height=auto class='center'/>
+    <br>
+  </h3>
+  <h2>
+     <strong>Eigenvector Centrality</strong>
+  </h2>
+  <h3>
+    <img src="graphs/g eigenvector centrality.svg" width="800" height=auto class='center'/>
+    <br>
+    Eigenvector centrality is a basic extension of degree centrality, which defines 
+    centrality of a node as proportional to its neighbors’ importance. When we sum up 
+    all connections of a node, not all neighbors are equally important. Let’s consider 
+    two nodes in a friend network with same degree, the one who is connected to more central 
+    nodes should be more central.
+    <br>
+    <br>
+    First, we define an initial guess for the centrality of nodes in a graph as 
+    \(x_i=1\). Now we are going to iterate for the new centrality value \(x_i'\) for node i as following:
+    <br>
+    <br>
+    $$x_i' = \sum_{j} A_{ij}x_j$$
+    <br>
+    <br>
+    Here \(A_{ij}\) is an element of the adjacency matrix, where it gives 1 or 0 for whether an 
+    edge exists between nodes \(i\) and \(j\). it can also be written in matrix notation as \(\mathbf{x'} = \mathbf{Ax}\). 
+    We iterate over t steps to find the vector \(\mathbf{x}(t)\) as:
+    <br>
+    <br>
+    $$\mathbf{x}(t) = \mathbf{A^t x}(0)$$
+    <br>
+    <br>
+    The drawing also shows, the nodes which have the same number of connections are not necessarily in 
+    the same heat map color. The one that is connected to more central nodes are more hot in this visualization.
+    <br>
+    <br>
+    However, as we can see from the definition, it is a problematic measure for directed graphs. 
+    Let’s say that a new research paper is published and it references a handful of existing papers. 
+    It would not contribute to any of those referenced papers in this citation network because it is not 
+    cited by any other papers and has zero eigenvector centrality. In other words, eigenvector centrality 
+    would not take zero in-degree nodes into account in directed graphs such as citation networks.
+    <br>
+    <br>
+    <img src="graphs/Dig eigenvector centrality.svg" width="800" height=auto class='center'/>
+    <br>
     </h3>
 
 
 </body>
 
 <script src="https://d3js.org/d3.v6.min.js"></script>
-
-<script>
-    let margin = { top: 0, right: 0, bottom: 50, left: 30 };
-    let width = 700;
-    let height = 500;
-
-var colorScale = d3.scaleLinear()
-  	.range(['#440154FF', '#481567FF', '#482677FF', '#453781FF', '#404788FF',
-'#39568CFF', '#33638DFF', '#2D708EFF', '#287D8EFF', '#238A8DFF',
-'#1F968BFF', '#20A387FF', '#29AF7FFF', '#3CBB75FF', '#55C667FF',
-'#73D055FF', '#95D840FF', '#B8DE29FF', '#DCE319FF', '#FDE725FF']);
-
-
-
-  // append a defs (for definition) element to your SVG
-var svgLegend = d3.select('body').append('svg')
-    .attr("width",600);
-var defs = svgLegend.append('defs');
-
-	// append a linearGradient element to the defs and give it a unique id
-var linearGradient = defs.append('linearGradient')
-		.attr('id', 'linear-gradient');
-
-// horizontal gradient
-linearGradient
-  .attr("x1", "0%")
-  .attr("y1", "0%")
-  .attr("x2", "100%")
-  .attr("y2", "0%");
-
-// append multiple color stops by using D3's data/enter step
-linearGradient.selectAll("stop")
-  .data([
-    {offset: "0%", color: "#440154FF"},
-    {offset: "50%", color: "#29AF7FFF"},
-    {offset: "100%", color: "#FDE725FF"}
-  ])
-  .enter().append("stop")
-  .attr("offset", function(d) { 
-    return d.offset; 
-  })
-  .attr("stop-color", function(d) { 
-    return d.color; 
-  });
-
-// append title
-svgLegend.append("text")
-  .attr("class", "legendTitle")
-  .attr("x", 10)
-  .attr("y", 20)
-  .style("text-anchor", "left")
-  .text("Centrality Score (Low to High Centrality)");
-
-// draw the rectangle and fill with gradient
-svgLegend.append("rect")
-  .attr("x", 10)
-  .attr("y", 30)
-  .attr("width", 345)
-  .attr("height", 35)
-  .style("fill", "url(#linear-gradient)");
-
-//create tick marks
-var xLeg = d3.scaleLinear()
-  .domain([0, 100])
-  .range([10, 400]);
-
-
-svgLegend
-  .attr("class", "axis")
-  .append("g")
-  .attr("transform", "translate(0, 40)")
-  .call(axisLeg);
-
-</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.10.0/d3.min.js"></script>
 
 
