@@ -1,3 +1,4 @@
+console.log({d3})
 let margin = { top: 0, right: 0, bottom: 50, left: 30 };
 const width = document.body.clientWidth
 const height = document.body.clientHeight
@@ -47,7 +48,8 @@ svgLegend.append("text")
   .attr("x", 10)
   .attr("y", 20)
   .style("text-anchor", "left")
-  .text("Centrality Scale: Brighter Colors Represent Higher Centrality Measure");
+  .text("Centrality Scale: Brighter Colors Represent Higher Centrality Measure
+  ");
 
 // draw the rectangle and fill with gradient
 svgLegend.append("rect")
