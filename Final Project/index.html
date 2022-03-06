@@ -76,13 +76,10 @@
   stroke: #fff;
   stroke-width: 1.5px;
 }
-
-    table, th, td {
-  border: 1px solid white;
-  border-collapse: collapse;
-}
-th, td {
-  background-color: #96D4D4;
+.sticky{
+    position:sticky;
+    top:calc(20% - 150px);
+    margin-left: -100px;
 }
     </style>
       <title>Data Viz | Jacob Jameson</title>
@@ -107,7 +104,6 @@ th, td {
       </h2>
 
     </div>
-
 
     <h3>
 
@@ -158,6 +154,14 @@ th, td {
       <br>
       <br>
     </h3>
+
+    <section class="yellow"></section>
+    <div id="container" class="sticky">
+        <br />
+        <div>
+          <img src="graphs/viridis.png" width="30" height="500" class='left'/>
+        </div>
+    </div>
 
     <h2>
        <strong>Degree Centrality</strong>
@@ -314,7 +318,7 @@ th, td {
       .data(graph.nodes)
       .enter().append("circle")
         .attr("r", 10)
-        .attr("fill", '#FFD700')
+        .attr("fill", '#FD5E53')
         .call(d3.drag()
             .on("start", dragstarted)
             .on("drag", dragged)
