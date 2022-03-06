@@ -111,9 +111,9 @@ th, td {
 
     <h3>
 
-      <strong> According to Freeman in 1979: "There is certainly 
+      <strong> "There is certainly 
       no unanimity on exactly what centrality is or on its conceptual foundations, and 
-      there is little agreement on the proper procedure for its measurement."</strong>
+      there is little agreement on the proper procedure for its measurement." </strong> - Linton Freeman (1977)
       <br>
       <br>
       <div class="chart-container">
@@ -163,7 +163,7 @@ th, td {
        <strong>Degree Centrality</strong>
     </h2>
     <h3>
-    <img src="graphs/g degree centrality.svg" width="800" height=auto class='center'/>
+    <img src="graphs/g degree centrality.svg" width="1500" height=auto class='center'/>
     <br>
     Degree of a node is basically number of edges that it has. The basic intuition is that, 
     nodes with more connections are more influential and important in a network. In other words, 
@@ -174,14 +174,14 @@ th, td {
     For directed graphs, in-degree, number of incoming points, is considered as importance factor for nodes.
     <br>
     <br>
-    <img src="graphs/Dig degree centrality.svg" width="800" height=auto class='center'/>
+    <img src="graphs/Dig degree centrality.svg" width="1500" height=auto class='center'/>
     <br>
   </h3>
   <h2>
      <strong>Eigenvector Centrality</strong>
   </h2>
   <h3>
-    <img src="graphs/g eigenvector centrality.svg" width="800" height=auto class='center'/>
+    <img src="graphs/g eigenvector centrality.svg" width="1500" height=auto class='center'/>
     <br>
     Eigenvector centrality is a basic extension of degree centrality, which defines 
     centrality of a node as proportional to its neighbors’ importance. When we sum up 
@@ -216,7 +216,7 @@ th, td {
     would not take zero in-degree nodes into account in directed graphs such as citation networks.
     <br>
     <br>
-    <img src="graphs/Dig eigenvector centrality.svg" width="800" height=auto class='center'/>
+    <img src="graphs/Dig eigenvector centrality.svg" width="1500" height=auto class='center'/>
     <br>
     Here the contribution from zero in-degree nodes is zero; consequently, all values are zero 
     except two nodes which are referencing each other.
@@ -225,7 +225,7 @@ th, td {
       <strong>Katz Centrality</strong>
    </h2>
    <h3>
-   <img src="graphs/Dig katz centrality.svg" width="800" height=auto class='center'/>
+   <img src="graphs/Dig katz centrality.svg" width="1500" height=auto class='center'/>
   Katz centrality introduces two positive constants \(\alpha\) and \(\beta\) to tackle the problem of eigenvector 
   centrality with zero in-degree nodes:
   <br>
@@ -244,13 +244,13 @@ th, td {
   of undirected graphs as well.
   <br>
   <br>
-  <img src="graphs/g katz centrality.svg" width="800" height=auto class='center'/>
+  <img src="graphs/g katz centrality.svg" width="1500" height=auto class='center'/>
 </h3>
 <h2>
   <strong>PageRank</strong>
 </h2>
 <h3>
-  <img src="graphs/Dig pagerank centrality.svg" width="800" height=auto class='center'/>
+  <img src="graphs/Dig pagerank centrality.svg" width="1500" height=auto class='center'/>
 
   PageRank was introduced by the founders of Google to rank websites in search results. 
   It can be considered as an extension of Katz centrality. The websites on the web can be 
@@ -283,11 +283,8 @@ th, td {
 
   
 
-
-
-
-
 </body>
+
 <script src="https://d3js.org/d3.v4.min.js"></script>
 <script>
   var svg = d3.select("svg"),
