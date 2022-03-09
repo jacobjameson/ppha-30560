@@ -27,18 +27,16 @@
       .selectAll("circle")
       .data(graph.nodes)
       .enter().append("circle")
-        .attr("r", 10)
+        .attr("r", 15)
         .attr("fill", function(d) { 
             min = Math.ceil(0);
-            max = Math.floor(18);
+            max = Math.floor(19);
             return virdis[Math.floor(Math.random() * (18 - 0) + 0)]; })
         .call(d3.drag()
             .on("start", dragstarted)
             .on("drag", dragged)
             .on("end", dragended));
   
-    node.append("title")
-        .text(function(d) { return d.id; });
   
     simulation
         .nodes(graph.nodes)
