@@ -27,7 +27,7 @@
       .selectAll("circle")
       .data(graph.nodes)
       .enter().append("circle")
-        .attr("r", 15)
+        .attr("r", 8)
         .attr("fill", function(d) { 
             min = Math.ceil(0);
             max = Math.floor(19);
