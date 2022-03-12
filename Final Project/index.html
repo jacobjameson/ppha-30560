@@ -1,53 +1,27 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
-<style>
-    .chart-container {
-        max-width: 1050px;
-        margin: 0 auto;
-        margin-top: 10px;
-        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    }
-    svg {
-        overflow: visible;
-    }
-
-    h1 {
-        margin-top: 10px;
-        margin-left: 150px;
-        font-family: 'Helvetica Neue';
-        font-weight: 400;
-        font-size: 24px;
-    }
-
-    h2 {
-        margin-bottom: 30px;
-        margin-left: 150px;
-        font-family: 'Helvetica Neue';
-        font-weight: 400;
-        font-size: 15px;
-    }
-
+    <style>
     .pop-up {
-        position: absolute; 
-        border: 1px solid black;
-        border-radius: 1px;
-        line-height: 1.2;
-        width: 200px;
-        pointer-events: none;
-        background-color: white;
-        padding: 10px;
-        font-family: 'Helvetica Neue';
-        font-size: 12px;
+    position: absolute; 
+    border: 1px solid black;
+    border-radius: 1px;
+    line-height: 1.2;
+    width: 200px;
+    pointer-events: none;
+    background-color: white;
+    padding: 10px;
+    font-family: 'Helvetica Neue';
+    font-size: 12px;
     }
 
     .source {
-        max-width: 600px;
-        margin-left: 150px;
-        margin-top: 30px;
-        font-family: 'Helvetica Neue';
-        font-size: 12px;
-        color: #999999;
-        line-height: 1.5;
+    max-width: 600px;
+    margin-left: 150px;
+    margin-top: 30px;
+    font-family: 'Helvetica Neue';
+    font-size: 12px;
+    color: #999999;
+    line-height: 1.5;
 
     }
     .legendTitle {
@@ -67,57 +41,63 @@
 
     }
     .links line {
-  stroke: #000000;
-  stroke-opacity: 0.6;
-}
+    stroke: #000000;
+    stroke-opacity: 0.7;
+    }
 
-.nodes circle {
-  stroke: #fff;
-  stroke-width: 1.5px;
-}
-.sticky{
+    .nodes circle {
+    stroke: #fff;
+    stroke-width: 0.5px;
+    }
+    .sticky{
     position:sticky;
     top:calc(20% - 150px);
     margin-left: -150px;
-}
+    }
     </style>
-      <title>Data Viz | Jacob Jameson</title>
-      <meta charset="utf-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <link href="styles.css" rel="stylesheet"></style>
-      <script src="https://d3js.org/d3.v6.min.js"></script>
-      <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=default'></script>
-      <script src="//unpkg.com/3d-force-graph"></script>
-      <script src="//code.jquery.com/jquery.js"></script>
-      <script src="https://d3js.org/d3.v4.min.js"></script>
-      <script src="https://d3js.org/d3.v6.min.js"></script>
+
+  <title>Data Viz | Jacob Jameson</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="styles.css" rel="stylesheet"></style>
+  <script src="https://d3js.org/d3.v6.min.js"></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=default'></script>
+  <script src="//unpkg.com/3d-force-graph"></script>
+  <script src="//code.jquery.com/jquery.js"></script>
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+  <script src="https://d3js.org/d3.v6.min.js"></script>
+
   <body>
-
-    <h1>
+      <h1>
       Measuring Centrality in Social Networks: Comparison through Visualization
-    </h1>
+      </h1>
 
-    <div id="intro">
+      <div id="intro">
       <h2>
-        Jacob Jameson
+      PPHA 30560: Data Visualization
+      <br>
+      <br>
+      Jacob Jameson
       </h2>
 
-    </div>
+      </div>
 
-    <h3>
+      <h3>
 
-      <strong> "There is certainly 
-      no unanimity on exactly what centrality is or on its conceptual foundations, and 
-      there is little agreement on the proper procedure for its measurement." </strong> - Linton Freeman (1977)
+      <strong> 
+      "There is certainly no unanimity on exactly what centrality is or 
+      on its conceptual foundations, and there is little agreement on the 
+      proper procedure for its measurement." 
+      </strong> - Linton Freeman (1977)
       <br>
       <br>
       <div class="chart-container">
 
-        <svg width=500 height=500 class=center id="interactive_net"></svg>
+      <svg width=500 height=500 class=center id="interactive_net"></svg>
 
       </div>
-  
-    </div>
+
+      </div>
       Social network analysis can be used to measure the importance of a 
       person as a function of the social structure of a community or organization. 
       In social networks, centrality measures this kind of structural importance of the 
@@ -126,13 +106,13 @@
       In this project we will explore the following centrality measures:
       <br>
       <ul>
-        <li>Degree Centrality</li>
-        <li>Eigenvector Centrality</li>
-        <li>Katz Centrality</li>
-        <li>PageRank</li>
-        <li>HITS Hubs and Authorities</li>
-        <li>Closeness Centrality</li>
-        <li>Betweenness Centrality</li>
+      <li>Degree Centrality</li>
+      <li>Eigenvector Centrality</li>
+      <li>Katz Centrality</li>
+      <li>PageRank</li>
+      <li>HITS Hubs and Authorities</li>
+      <li>Closeness Centrality</li>
+      <li>Betweenness Centrality</li>
       </ul>
       <br>
       For these examples we will look at centrality for both directed and undirected graphs.
@@ -152,144 +132,206 @@
       as the number of nodes that interact with another node and the direction is irrelevant.
       <br>
       <br>
-    </h3>
+      </h3>
 
-    <section class="yellow"></section>
-    <div id="container" class="sticky">
-        <br />
-        <div>
-          <img src="graphs/viridis.svg" width=700 height=auto class='left'/>
-        </div>
-    </div>
+      <section class="yellow"></section>
+      <div id="container" class="sticky">
+      <br />
+      <div>
+      <img src="graphs/viridis.svg" width=700 height=auto class='left'/>
+      </div>
+      </div>
 
-    <h2>
-       <strong>Degree Centrality</strong>
-    </h2>
-    <h3>
-    <img src="graphs/g degree centrality.svg" width="1500" height=auto class='center'/>
-    <br>
-    Degree of a node is basically number of edges that it has. The basic intuition is that, 
-    nodes with more connections are more influential and important in a network. In other words, 
-    the person with higher friend count in a social network, the more cited paper (in-degree) in a 
-    scientific citation network is the one that is more central according to this metric.
-    <br>
-    <br>
-    For directed graphs, in-degree, number of incoming points, is considered as importance factor for nodes.
-    <br>
-    <br>
-    <img src="graphs/Dig degree centrality.svg" width="1500" height=auto class='center'/>
-    <br>
-  </h3>
-  <h2>
-     <strong>Eigenvector Centrality</strong>
-  </h2>
-  <h3>
-    <img src="graphs/g eigenvector centrality.svg" width="1500" height=auto class='center'/>
-    <br>
-    Eigenvector centrality is a basic extension of degree centrality, which defines 
-    centrality of a node as proportional to its neighbors’ importance. When we sum up 
-    all connections of a node, not all neighbors are equally important. Let’s consider 
-    two nodes in a friend network with same degree, the one who is connected to more central 
-    nodes should be more central.
-    <br>
-    <br>
-    First, we define an initial guess for the centrality of nodes in a graph as 
-    \(x_i=1\). Now we are going to iterate for the new centrality value \(x_i'\) for node i as following:
-    <br>
-    <br>
-    $$x_i' = \sum_{j} A_{ij}x_j$$
-    <br>
-    <br>
-    Here \(A_{ij}\) is an element of the adjacency matrix, where it gives 1 or 0 for whether an 
-    edge exists between nodes \(i\) and \(j\). it can also be written in matrix notation as \(\mathbf{x'} = \mathbf{Ax}\). 
-    We iterate over t steps to find the vector \(\mathbf{x}(t)\) as:
-    <br>
-    <br>
-    $$\mathbf{x}(t) = \mathbf{A^t x}(0)$$
-    <br>
-    <br>
-    The drawing also shows, the nodes which have the same number of connections are not necessarily in 
-    the same heat map color. The one that is connected to more central nodes are more hot in this visualization.
-    <br>
-    <br>
-    However, as we can see from the definition, it is a problematic measure for directed graphs. 
-    Let’s say that a new research paper is published and it references a handful of existing papers. 
-    It would not contribute to any of those referenced papers in this citation network because it is not 
-    cited by any other papers and has zero eigenvector centrality. In other words, eigenvector centrality 
-    would not take zero in-degree nodes into account in directed graphs such as citation networks.
-    <br>
-    <br>
-    <img src="graphs/Dig eigenvector centrality.svg" width="1500" height=auto class='center'/>
-    <br>
-    Here the contribution from zero in-degree nodes is zero; consequently, all values are zero 
-    except two nodes which are referencing each other.
-    </h3>
-    <h2>
+      <h2>
+      <strong>Degree Centrality</strong>
+      </h2>
+      <h3>
+      <img src="graphs/g degree centrality.svg" width="1500" height=auto class='center'/>
+      <br>
+      Degree of a node is basically number of edges that it has. The basic intuition is that, 
+      nodes with more connections are more influential and important in a network. In other words, 
+      the person with higher friend count in a social network, the more cited paper (in-degree) in a 
+      scientific citation network is the one that is more central according to this metric.
+      <br>
+      <br>
+      For directed graphs, in-degree, number of incoming points, is considered as importance factor for nodes.
+      <br>
+      <br>
+      <img src="graphs/Dig degree centrality.svg" width="1500" height=auto class='center'/>
+      <br>
+      </h3>
+      <h2>
+      <strong>Eigenvector Centrality</strong>
+      </h2>
+      <h3>
+      <img src="graphs/g eigenvector centrality.svg" width="1500" height=auto class='center'/>
+      <br>
+      Eigenvector centrality is a basic extension of degree centrality, which defines 
+      centrality of a node as proportional to its neighbors’ importance. When we sum up 
+      all connections of a node, not all neighbors are equally important. Let’s consider 
+      two nodes in a friend network with same degree, the one who is connected to more central 
+      nodes should be more central.
+      <br>
+      <br>
+      First, we define an initial guess for the centrality of nodes in a graph as 
+      \(x_i=1\). Now we are going to iterate for the new centrality value \(x_i'\) for node i as following:
+      <br>
+      <br>
+      $$x_i' = \sum_{j} A_{ij}x_j$$
+      <br>
+      <br>
+      Here \(A_{ij}\) is an element of the adjacency matrix, where it gives 1 or 0 for whether an 
+      edge exists between nodes \(i\) and \(j\). it can also be written in matrix notation as \(\mathbf{x'} = \mathbf{Ax}\). 
+      We iterate over t steps to find the vector \(\mathbf{x}(t)\) as:
+      <br>
+      <br>
+      $$\mathbf{x}(t) = \mathbf{A^t x}(0)$$
+      <br>
+      <br>
+      The drawing also shows, the nodes which have the same number of connections are not necessarily in 
+      the same heat map color. The one that is connected to more central nodes are more hot in this visualization.
+      <br>
+      <br>
+      However, as we can see from the definition, it is a problematic measure for directed graphs. 
+      Let’s say that a new research paper is published and it references a handful of existing papers. 
+      It would not contribute to any of those referenced papers in this citation network because it is not 
+      cited by any other papers and has zero eigenvector centrality. In other words, eigenvector centrality 
+      would not take zero in-degree nodes into account in directed graphs such as citation networks.
+      <br>
+      <br>
+      <img src="graphs/Dig eigenvector centrality.svg" width="1500" height=auto class='center'/>
+      <br>
+      Here the contribution from zero in-degree nodes is zero; consequently, all values are zero 
+      except two nodes which are referencing each other.
+      </h3>
+      <h2>
       <strong>Katz Centrality</strong>
-   </h2>
-   <h3>
-   <img src="graphs/Dig katz centrality.svg" width="1500" height=auto  class='center'/>
-  Katz centrality introduces two positive constants \(\alpha\) and \(\beta\) to tackle the problem of eigenvector 
-  centrality with zero in-degree nodes:
-  <br>
-  <br>
-  $$x_i = \alpha \sum_{j} A_{ij} x_j + \beta$$,
-  <br>
-  <br>
-  again \(A_{ij}\) is an element of the adjacency matrix, and it can also be written in matrix notation as 
-  \(\mathbf{x} = \alpha \mathbf{Ax} + \beta \mathbf{1}\). This $\beta$ constant gives a free centrality 
-  contribution for all nodes even though they don’t get any contribution from other nodes. The existence of a 
-  node alone would provide it some importance. \(\alpha\) constant determines the balances between the contribution 
-  from other nodes and the free constant.
-  <br>
-  <br>
-  Although this method is introduced as a solution for directed graphs, it can be useful for some applications 
-  of undirected graphs as well.
-  <br>
-  <br>
-  <img src="graphs/g katz centrality.svg" width="1500" height=auto  class='center'/>
-</h3>
-<h2>
-  <strong>PageRank</strong>
-</h2>
-<h3>
-  <img src="graphs/Dig pagerank centrality.svg" width="1500" height=auto  class='center'/>
-
-  PageRank was introduced by the founders of Google to rank websites in search results. 
-  It can be considered as an extension of Katz centrality. The websites on the web can be 
-  modeled as a directed graph, where hypermedia links between websites determines the edges. 
-  Let’s consider a popular web directory website with high Katz centrality value which has 
-  millions of links to other websites. It would contribute to every single website significantly, 
-  nevertheless not all of them are important. To overcome that issue, contribution value is 
-  divided by out-degree of the node:
-  <br>
-  <br>
-  $$x_i = \alpha \sum_{j} A_{ij} \frac{x_j}{k_j^{out}} + \beta ,$$
-  <br>
-  <br>
-  where \(k_j^{out} = 1\) for zero out-degree nodes to avoid division by zero. 
-  It can also be written in matrix terms as:
-  <br>
-  <br>
-  $$\mathbf{x} = \alpha \mathbf{A D^{-1} x} + \beta \mathbf{1} ,$$
-  <br>
-  <br>
-  where \(\mathbf{D}\) is a diagonal matrix with elements \(D_{ii} = max(k_i^{out}, 1)\).
-  <br>
-  <br>
-  As the drawing demonstrates, the nodes with fewer out-degree contributes way more 
-  to each node compared the Katz Centrality. Here the node at the top right gets only 
-  reference of a very important node, and it becomes way more important compared to the 
-  Katz Centrality; on the other hand, the node in the center which gets contribution from 
-  high out-degree nodes loses its importance.
-
-
-  
-
-</body>
+      </h2>
+      <h3>
+      <img src="graphs/Dig katz centrality.svg" width="1500" height=auto  class='center'/>
+      Katz centrality introduces two positive constants \(\alpha\) and \(\beta\) to tackle the problem of eigenvector 
+      centrality with zero in-degree nodes:
+      <br>
+      <br>
+      $$x_i = \alpha \sum_{j} A_{ij} x_j + \beta$$,
+      <br>
+      <br>
+      again \(A_{ij}\) is an element of the adjacency matrix, and it can also be written in matrix notation as 
+      \(\mathbf{x} = \alpha \mathbf{Ax} + \beta \mathbf{1}\). This $\beta$ constant gives a free centrality 
+      contribution for all nodes even though they don’t get any contribution from other nodes. The existence of a 
+      node alone would provide it some importance. \(\alpha\) constant determines the balances between the contribution 
+      from other nodes and the free constant.
+      <br>
+      <br>
+      Although this method is introduced as a solution for directed graphs, it can be useful for some applications 
+      of undirected graphs as well.
+      <br>
+      <br>
+      <img src="graphs/g katz centrality.svg" width="1500" height=auto  class='center'/>
+      </h3>
+      <h2>
+      <strong>HITS Hubs and Authorities</strong>
+      </h2>
+      <h3>
+      <img src="graphs/Dig HITS Hubs centrality.svg" width="1500" height=auto  class='center'/>
+      <img src="graphs/Dig HITS Authorities centrality.svg" width="1500" height=auto  class='center'/>
+      <br>
+      <br>
+      Up until this point, we have discussed the measures that captures high node centrality, 
+      however, there can be nodes in the network which are important for the network, but they 
+      are not central. In particular, let’s consider a survey (review) article in a scientific 
+      citation network. The article itself is not necessarily stating a new discovery and it 
+      is not central; but nevertheless it is a helpful material to acquire knowledge on a 
+      topic because it captures a lot of central research articles. In order to find out such 
+      nodes, HITS algorithm introduces two types of central nodes: Hubs and Authorities. 
+      Authorities are the one that most cited by Hubs and Hubs are the one that citing the most high Authority nodes.
+      <br>
+      <br>
+      Authority Centrality is defined as the sum of the hub centralities which point to the node \(i\):
+      <br>
+      <br>
+      $$x_i = \alpha \sum_{j} A_{ij} y_j,$$
+      <br>
+      <br>
+      where \(\alpha\) is constant. Likewise, Hub Centrality is the sum of the 
+      authorities which are pointed by the node \(i\):
+      <br>
+      <br>
+      $$y_i = \beta \sum_{j} A_{ji} x_j,$$
+      <br>
+      <br>
+      with constant \(\beta\). Here notice that the element of the adjacency matrix 
+      are swapped for Hub Centrality because we are concerned with outgoing edges for 
+      hubs. So in matrix notation:
+      <br>
+      <br>
+      $$\mathbf{x} = \alpha \mathbf{Ay}, \quad$$
+      <br>
+      <br>
+      $$\mathbf{y} = \beta \mathbf{A^Tx}.$$
+      <br>
+      <br>
+      As it can be seen from the drawing, HITS Algorithm also tackles the problem with zero 
+      in-degree nodes of Eigenvector Centrality. These zero in-degree nodes become central 
+      hubs and contribute to other nodes. Yet we can still use a free centrality 
+      contribution constant like in Katz Centrality or other variants.
+      </h3>
+      <h2>
+      <strong>Closeness Centrality </strong>
+      </h2>
+      <h3>
+      <img src="graphs/g closeness centrality.svg" width="1500" height=auto  class='center'/>
+      <br>
+      <br>
+      Closeness Centrality is a self-explanatory measure where each node’s 
+      importance is determined by closeness to all other nodes. Let \(d_{ij}\) 
+      be the length of the shortest path between nodes \(i\) and \(j\), the average 
+      distance \(l_i\) is such as:
+      <br>
+      <br>
+      $$l_i = \frac{1}{n} \sum_{j}d_{ij}$$
+      <br>
+      <br>
+      Since we are looking for the closer node, the Closeness Centrality \(C_i\) 
+      is inverse proportional to average length \(l_i\), so:
+      <br>
+      <br>
+      $$C_i = \frac{1}{l_i} = \frac{n}{\sum_{j}d_{ij}}$$
+      <br>
+      <br>
+      Here we are using an unweighted graph and all edges have weight 1 
+      distance cost for calculating shortest path length \(d_{ij}\). This measure 
+      can be used to determine the central distribution point in a delivery network.
+      </h3>
+      <h2>
+      <strong>Betweenness Centrality </strong>
+      </h2>
+      <h3>
+      <img src="graphs/g betweenness centrality.svg" width="1500" height=auto  class='center'/>
+      <br>
+      <br>
+      Betweenness Centrality is another centrality that is based on shortest 
+      path between nodes. It is determined as number of the shortest paths 
+      passing by the given node. For starting node \(s\), destination node 
+      \(t\) and the input node \(i\) that holds \(s \ne t \ne i\), let \(n_{st}^i\) be 
+      1 if node \(i\) lies on the shortest path between \(s\) and \(t\); and \(0\) if not. 
+      So the betweenness centrality is defined as:
+      <br>
+      <br>
+      $$x_i = \sum_{st} n_{st}^i$$
+      <br>
+      <br>
+      However, there can be more than one shortest path between \(s\) and \(t\) and 
+      that will count for centrality measure more than once. Thus, we need to 
+      divide the contribution to \(g_{st}\), total number of shortest paths between \(s\) and \(t\).
+      <br>
+      <br>
+      $$x_i = \sum_{st} \frac{n_{st}^i}{g_{st}}$$
+      </h3>
+      </body>
 
 <script src="https://d3js.org/d3.v4.min.js"></script>
-<script src=interactive_net.js></script>
+<script src="JS Scripts/interactive_net.js"></script>
 
 
 </html>

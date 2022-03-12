@@ -1,208 +1,288 @@
 
 body {
-	background-color: #FFFFFF;
-	margin-left: 10rem;
-	margin-right: 10rem;
-	margin-bottom: 10rem
+background-color: #FFFFFF;
+margin-left: 10rem;
+margin-right: 10rem;
+margin-bottom: 10rem
 }
 
 .container {
-	display: flex;
-	flex-direction: column;
+display: flex;
+flex-direction: column;
 }
 
 svg {
-  overflow: visible;
+overflow: visible;
 }
 
 .center {
-	display: block;
-	margin-left: auto;
-	margin-right: auto;
-	width: 50%;
-  }
+display: block;
+margin-left: auto;
+margin-right: auto;
+width: 50%;
+}
 h1, h2, h3, h4, h5 {
-	font-family: 'Lato', 'Raleway', sans-serif;
-	margin-left: 1rem;
-	margin-right: 1rem;
+font-family: 'Lato', 'Raleway', sans-serif;
+margin-left: 1rem;
+margin-right: 1rem;
 }
 
 h1 {
-	font-size: 75px;
-	font-weight: 100;
-	font-style: italic;
-	margin-bottom: 1rem;
-	margin-top: 10rem;
-	color: #1d4f16;
-	/* color: #d5b4b8; */
+font-size: 75px;
+font-weight: 100;
+font-style: italic;
+margin-bottom: 1rem;
+margin-top: 10rem;
+color: #1d4f16;
+/* color: #d5b4b8; */
 }
 
 h2 {
-	font-family: 'Playfair Display', serif;
-	color: #353802;
-	margin-top: 1rem;
-	font-size: 24px;
+font-family: 'Playfair Display', serif;
+color: #353802;
+margin-top: 1rem;
+font-size: 24px;
 }
 
 h3 {
-	font-weight: 400;
+font-weight: 400;
 }
 
 h5 {
-	font-weight: 400;
-	color: #457e3d;
-	font-size: 16px;
-	font-style: italic;
-  font-weight: bold;
+font-weight: 400;
+color: #457e3d;
+font-size: 16px;
+font-style: italic;
+font-weight: bold;
 }
 
 .spacer {
-    height: 30px;
+height: 30px;
 }
 
 a:link {
-  color: #1d4f16;
+color: #1d4f16;
 }
 
 /* visited link */
 a:visited {
-  color: #1d4f16;
+color: #1d4f16;
 }
 
 /* mouse over link */
 a:hover {
-  background-color: #F3e1ef;
+background-color: #F3e1ef;
 }
 
 /* selected link */
 a:active {
-  color: #7bc158;
+color: #7bc158;
 }
 
 p {
-	font-family: 'Playfair Display', serif;
-	font-size: 18px;
-	color: #353802;
-	margin-left: 1rem;
-	margin-right: 1rem;
+font-family: 'Playfair Display', serif;
+font-size: 18px;
+color: #353802;
+margin-left: 1rem;
+margin-right: 1rem;
 }
 
 .caption {
-  font-size: 14px;
+font-size: 14px;
 }
 
 .highlightgreen {
-	background-color: #E2F5D0;
+background-color: #E2F5D0;
 }
 
 .highlightclip {
-	background-color: #Efe9d2;
-	/* padding: 0.5rem 0.5rem; */
+background-color: #Efe9d2;
+/* padding: 0.5rem 0.5rem; */
 }
 
 .highlightclip:hover {
-	background-color: #E2F5D0;
-	padding: 0.5rem 0.5rem;
+background-color: #E2F5D0;
+padding: 0.5rem 0.5rem;
 }
 
 .clip-container {
-	margin-top: 4rem;
-	margin-bottom: 2rem;
-	display: flex;
-	flex-direction: column;
-	/* margin-right: 10rem; */
+margin-top: 4rem;
+margin-bottom: 2rem;
+display: flex;
+flex-direction: column;
+/* margin-right: 10rem; */
 }
 
 .chart-container {
-  max-width: 850px;
-  margin: 0 auto;
-  font-family: 'Lato', sans-serif;
+max-width: 850px;
+margin: 0 auto;
+font-family: 'Lato', sans-serif;
 }
 
 .x .tick line {
-  stroke: rgba(0, 0, 0, .2);
+stroke: rgba(0, 0, 0, .2);
 }
 
 .y .tick line {
-  stroke: rgba(0, 0, 0, .2);
+stroke: rgba(0, 0, 0, .2);
 }
 
 .x .domain {
-  display: none;
+display: none;
 }
 
 .y .domain {
-  display: none;
+display: none;
 }
 
 .y .tick text {
-  font-size: 14px;
-  fill: #333;
-  font-family: 'Lato';
+font-size: 14px;
+fill: #333;
+font-family: 'Lato';
 }
 
 .x .tick text {
-  font-size: 14px;
-  fill: #333;
-  font-family: 'Lato';
+font-size: 14px;
+fill: #333;
+font-family: 'Lato';
 }
 
 .highlightpink {
-  text-decoration: underline;
-  color: #d66982;
+text-decoration: underline;
+color: #d66982;
 }
 
 .source {
-  font-size: 12px;
-  color: #777;
-  font-weight: 400;
-  margin-right: 250px;
+font-size: 12px;
+color: #777;
+font-weight: 400;
+margin-right: 250px;
 }
 
 .node {
-	stroke: #fff;
-	stroke-width: 1px;
-  }
-  
-  .link {
-	stroke: #999;
-	stroke-opacity: 1;
-  }
+stroke: #fff;
+stroke-width: 1px;
+}
+
+.link {
+stroke: #999;
+stroke-opacity: 1;
+}
 
 .pop-up {
-  position: absolute;
-  border: 1px solid black;
-  border-radius: 1px;
-  line-height: 1.2;
-  width: 200px;
-  /* height: 100px; */
-  pointer-events: none;
-  background-color: white;
-  padding: 10px;
+position: absolute;
+border: 1px solid black;
+border-radius: 1px;
+line-height: 1.2;
+width: 200px;
+/* height: 100px; */
+pointer-events: none;
+background-color: white;
+padding: 10px;
 }
 
 @media (max-width: 768px) {
-	body {
-		background-color: #f7f2df;
-		margin-left: 1.5rem;
-		margin-right: 1.5rem;
-		margin-bottom: 0.25rem
-	}
+body {
+background-color: #f7f2df;
+margin-left: 1.5rem;
+margin-right: 1.5rem;
+margin-bottom: 0.25rem
+}
 
-	h1 {
-		font-size: 45px;
-		font-weight: 100;
-		margin-top: 5rem;
-		color: #1d4f16;
-		}
+h1 {
+font-size: 45px;
+font-weight: 100;
+margin-top: 5rem;
+color: #1d4f16;
+}
 
-  .container {
-    display: block;
-  }
+.container {
+display: block;
+}
 
-	.clip-container {
-		margin-top: 2rem;
-		margin-bottom: 2rem;
-		margin-right: 0.1rem;
-	}
+.clip-container {
+margin-top: 2rem;
+margin-bottom: 2rem;
+margin-right: 0.1rem;
+}
+
+.chart-container {
+max-width: 1050px;
+margin: 0 auto;
+margin-top: 10px;
+font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+svg {
+overflow: visible;
+}
+
+h1 {
+margin-top: 10px;
+margin-left: 150px;
+font-family: 'Helvetica Neue';
+font-weight: 400;
+font-size: 24px;
+}
+
+h2 {
+margin-bottom: 30px;
+margin-left: 150px;
+font-family: 'Helvetica Neue';
+font-weight: 400;
+font-size: 15px;
+}
+
+.pop-up {
+position: absolute; 
+border: 1px solid black;
+border-radius: 1px;
+line-height: 1.2;
+width: 200px;
+pointer-events: none;
+background-color: white;
+padding: 10px;
+font-family: 'Helvetica Neue';
+font-size: 12px;
+}
+
+.source {
+max-width: 600px;
+margin-left: 150px;
+margin-top: 30px;
+font-family: 'Helvetica Neue';
+font-size: 12px;
+color: #999999;
+line-height: 1.5;
+
+}
+.legendTitle {
+font-size: 15px;
+font-weight: 12;
+}
+
+.axis path, .axis line {
+fill: none;
+stroke: none; /*black;*/
+shape-rendering: crispEdges;
+}
+
+.axis text {
+font-family: Consolas, 'Times New Roman', Times, serif;
+font-size: 15pt;
+
+}
+.links line {
+stroke: #000000;
+stroke-opacity: 0.6;
+}
+
+.nodes circle {
+stroke: #fff;
+stroke-width: 1.5px;
+}
+.sticky{
+position:sticky;
+top:calc(20% - 150px);
+margin-left: -150px;
+}
 }
