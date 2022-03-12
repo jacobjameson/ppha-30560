@@ -230,6 +230,38 @@
       <img src="graphs/g katz centrality.svg" width="1500" height=auto  class='center'/>
       </h3>
       <h2>
+        <strong>PageRank</strong>
+        </h2>
+        <h3>
+        <img src="graphs/Dig pagerank centrality.svg" width="1500" height=auto  class='center'/>
+        PageRank was introduced by the founders of Google to rank websites in search results. 
+        It can be considered as an extension of Katz centrality. The websites on the web can 
+        be modeled as a directed graph, where hypermedia links between websites determines the 
+        edges. Let’s consider a popular web directory website with high Katz centrality value 
+        which has millions of links to other websites. It would contribute to every single 
+        website significantly, nevertheless not all of them are important. To overcome that 
+        issue, contribution value is divided by out-degree of the node:
+        <br>
+        <br>
+        $$x_i = \alpha \sum_{j} A_{ij} \frac{x_j}{k_j^{out}} + \beta,$$
+        <br>
+        <br>
+        where \(k_j^{out} = 1\) for zero out-degree nodes to avoid division by zero. It can also be written in matrix terms as:
+        <br>
+        <br>
+        $$\mathbf{x} = \alpha \mathbf{A D^{-1} x} + \beta \mathbf{1},$$
+        <br>
+        <br>
+        where \(\mathbf{D}\) is a diagonal matrix with elements \(D_{ii} = max(k_i^{out}, 1)\).
+        <br>
+        <br>
+        As the drawing demonstrates, the nodes with fewer out-degree contributes way more to each 
+        node compared the Katz Centrality. Here the node at the top right gets only reference of a 
+        very important node, and it becomes way more important compared to the Katz Centrality; on 
+        the other hand, the node in the center which gets contribution from high out-degree nodes 
+        loses its importance.
+      <h2>
+      </h3>
       <strong>HITS Hubs and Authorities</strong>
       </h2>
       <h3>
